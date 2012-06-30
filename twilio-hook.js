@@ -9,11 +9,13 @@ var twiliohook = hookio.createHook({
 });
 
 twiliohook.on('hook::ready', function(){
-    twiliohook.on('sendSms', function(number,message){
-        twilio.send({'number':number,'message':message,function(error,data){
-            console.log("Message sent to " + number + ".");
-        });
+    twiliohook.on('*::sendSms', function(data){
+        console.log('Received Data!');
+        console.info(data);
+        //twilio.send({'number':data.number,'message':data.message,function(error,data){
+        //    console.log("Message sent to " + number + ".");
+        //});
     });
 });
 
-myhook.start();
+twiliohook.start();
